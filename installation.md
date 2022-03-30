@@ -7,7 +7,7 @@ docker run -d -p 139:139 -p 445:445 --hostname samba-db -e TZ=Europe/Madrid -v s
 ![Docker and volume](https://static.packt-cdn.com/products/9781787125230/graphics/assets/5f3a0690-1315-4540-9950-55179a4a1574.png)
 
 # Simple REST API BACKEND PHP
-# # Setting Up the Skeleton
+## Setting Up the Skeleton
 
 ![Skeleton PHP](https://github.com/Legendary-Overlord/sd-exam1/blob/master/resources/Skeleton.png)
 
