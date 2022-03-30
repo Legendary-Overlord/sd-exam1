@@ -9,7 +9,7 @@ docker run -d -p 139:139 -p 445:445 --hostname samba-db -e TZ=Europe/Madrid -v s
 # Simple REST API BACKEND PHP
 # # Setting Up the Skeleton
 
-![Skeleton PHP]()
+![Skeleton PHP](https://github.com/Legendary-Overlord/sd-exam1/blob/master/resources/Skeleton.png)
 
 * **index.php:** the entry-point of our application. It will act as a front-controller of our application.
 * **inc/config.php:** holds the configuration information of our application. Mainly, it will hold the database credentials.
