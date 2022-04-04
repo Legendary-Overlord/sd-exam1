@@ -7,11 +7,11 @@
 ![TEAM](https://enterprisersproject.com/sites/default/files/styles/large/public/images/cio_devops_trends.png?itok=kQgVjVLc)
 
 # Create docker volume that persists
-docker volume create sdexam1
+´docker volume create sdexam1´
 
 
 # Download Samba image from docker hub that runs on the persistent volume
-docker run -d -p 139:139 -p 445:445 --hostname samba-db -e TZ=America/Bogota -v sdexam1:/share/folder elswork/samba -u "$(id -u):$(id -g):$(id -un):$(id -gn):sambapassword" -s "SmbShare:/share/folder:rw:$(id -un)"
+´docker run -d -p 139:139 -p 445:445 --hostname samba-db -e TZ=America/Bogota -v sdexam1:/share/folder elswork/samba -u "$(id -u):$(id -g):$(id -un):$(id -gn):sambapassword" -s "SmbShare:/share/folder:rw:$(id -un)"´
 
 ![Docker and volume](https://static.packt-cdn.com/products/9781787125230/graphics/assets/5f3a0690-1315-4540-9950-55179a4a1574.png)
 
