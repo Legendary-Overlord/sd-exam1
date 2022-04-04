@@ -4,7 +4,7 @@
 * **Gironza Cristian**
 * **Zuñiga Santiago**
 
-![TEAM](https://www.google.com/url?sa=i&url=https%3A%2F%2Fenterprisersproject.com%2Farticle%2F2020%2F7%2Fdevops-great-teams&psig=AOvVaw2vK-o9-30bm5X9qHt6vF6b&ust=1649200461799000&source=images&cd=vfe&ved=0CAcQjRxqFwoTCJixhdPE-_YCFQAAAAAdAAAAABAJ)
+![TEAM](https://enterprisersproject.com/sites/default/files/styles/large/public/images/cio_devops_trends.png?itok=kQgVjVLc)
 
 # Create docker volume that persists
 docker volume create sdexam1
