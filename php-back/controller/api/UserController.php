@@ -2,6 +2,38 @@
 class UserController extends BaseController
 {
     /**
+     * "/user/download" Endpoint - Download File
+     */
+    public function downloadReport($api_key,$id)
+    {
+
+        $curl_post_data = array('reportId' => $id);
+
+        $headers = array('Content-type: application/json','Authorization: '.$api_key,);
+        $fp = fopen (dirname(__FILE__) . '/localfile.tmp', 'w+');//This is the file where we save the    information
+        $curl = curl_init(DONWLOAD_REPORT);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($curl_post_data));
+        curl_setopt($curl, CURLOPT_USERPWD, $api_key);
+        $file = curl_exec($curl);
+
+        if ($file === false) 
+        {
+            $info = curl_getinfo($curl);
+            curl_close($curl);
+            die('error occured during curl exec. Additional info: ' . var_export($info));
+        }
+
+        curl_close($curl);
+
+        header('Content-type: ' . 'application/octet-stream');
+        header('Content-Disposition: ' . 'attachment; filename=report.pdf');
+        echo $file;        
+    }
+
+    /**
      * "/user/list" Endpoint - Get list of users
      */
     public function listAction()
