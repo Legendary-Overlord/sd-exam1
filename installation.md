@@ -7,7 +7,9 @@
 ![TEAM](https://enterprisersproject.com/sites/default/files/styles/large/public/images/cio_devops_trends.png?itok=kQgVjVLc)
 
 # Create docker volume that persists
-``docker volume create sdexam1``
+``` 
+docker volume create sdexam1 
+```
 
 
 # Download Samba image from docker hub that runs on the persistent volume
