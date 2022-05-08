@@ -22,6 +22,8 @@ services:
       dockerfile: DockerFile
     ports:
       - "8000:8000"
+    expose:
+      - "8000"
     networks:
       - back-tier
     
