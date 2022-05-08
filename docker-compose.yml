@@ -1,0 +1,30 @@
+version: "1"
+
+services:
+  ftpservice:
+    image: delfer/alpine-ftp-server
+    hostname: ftpserver
+    ports:
+      - "21:21"
+      - "21000-21010:21000-21010"
+    networks:
+      - back-tier
+    env_file: ./ftpserver/config.env
+    expose:
+      - "21"
+      - "21000-21010:21000-21010"
+
+  backendservice:
+    image: pcspam/php-back
+    hostname: php-back
+    build:
+      context: php-back
+      dockerfile: DockerFile
+    ports:
+      - "8000:8000"
+    networks:
+      - back-tier
+    
+networks:
+  # The presence of these objects is sufficient to define them
+  back-tier: {}

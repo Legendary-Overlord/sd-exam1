@@ -3,4 +3,4 @@ COPY . /app
 WORKDIR /app
 
 EXPOSE 8000
-CMD [ "php -S localhost:8000 index.php" ]
+CMD php -S localhost:8000 index.php
