@@ -1,9 +1,6 @@
 FROM php:zts-alpine3.15
+COPY . /app
+WORKDIR /app
 
-
-
-
-
-
-
-CMD [ "php -S index.php" ]
+EXPOSE 8000
+CMD [ "php -S localhost:8000 index.php" ]
