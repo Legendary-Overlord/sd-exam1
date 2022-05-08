@@ -26,10 +26,11 @@ class UserController extends BaseController
         try {
             //as seen in https://www.php.net/manual/en/function.file-put-contents.php
             $filename->name = isset($_GET['filename']) ? $_GET['filename'] : die();
-
+            
             $hostname = $ftp_username . ":" . $ftp_userpass . "@" . $ftp_server . "/" . $filename;
 
             /* the file content */
+            // https://es.stackoverflow.com/questions/294029/para-que-sirve-file-get-contentsphp-input
             $content = file_get_contents("php://input");
 
             /* create a stream context telling PHP to overwrite the file */
