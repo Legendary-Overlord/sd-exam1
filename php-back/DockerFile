@@ -1,0 +1,9 @@
+FROM php:zts-alpine3.15
+
+
+
+
+
+
+
+CMD [ "php -S index.php" ]
