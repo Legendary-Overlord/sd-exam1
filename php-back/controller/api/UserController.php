@@ -4,7 +4,7 @@ class UserController extends BaseController
 
     //check https://codeofaninja.com/create-simple-rest-api-in-php/#File_structure
     //https://www.w3schools.com/php/php_file_upload.asp
-    public function uploadAction($local_file){
+    public function uploadAction(){
 
         header("Access-Control-Allow-Origin: *");
         header("Content-Type: application/json; charset=UTF-8");
@@ -25,13 +25,13 @@ class UserController extends BaseController
 
         try {
             //as seen in https://www.php.net/manual/en/function.file-put-contents.php
-            $filename->name = isset($_GET['filename']) ? $_GET['filename'] : die();
-            
+            // $filename->name = isset($_GET['filename']) ? $_GET['filename'] : die();
+            $filename = $_FILES['userfile']['name'];
             $hostname = $ftp_username . ":" . $ftp_userpass . "@" . $ftp_server . "/" . $filename;
 
             /* the file content */
             // https://es.stackoverflow.com/questions/294029/para-que-sirve-file-get-contentsphp-input
-            $content = file_get_contents("php://input");
+            $content = $content . basename($_FILES['userfile']['name']);;
 
             /* create a stream context telling PHP to overwrite the file */
             $options = array('ftp' => array('overwrite' => true));
@@ -47,7 +47,7 @@ class UserController extends BaseController
     /**
      * "/user/download" Endpoint - Download File
      */
-    public function downloadAction($server_file)
+    public function downloadAction()
     {
         $ftp_server = "localhost";
 
