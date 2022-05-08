@@ -61,7 +61,7 @@ class UserController extends BaseController
         $strErrorDesc = '';
 
         //local_file
-        $local_file = '';
+        $local_file->name = isset($_GET['filename']) ? $_GET['filename'] : die();
 
         try {
             // Establish ftp connection
