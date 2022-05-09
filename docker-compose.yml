@@ -4,6 +4,7 @@ services:
   ftpservice:
     image: delfer/alpine-ftp-server
     hostname: ftpserver
+    container_name: ftpserver
     ports:
       - "21:21"
       - "21000-21010:21000-21010"
@@ -21,7 +22,10 @@ services:
     volumes:
       - ./php-back:/var/www/html
     ports:
-      - "8000:80"
+      - "127.0.0.1:8000:80"
+    expose:
+      - "80"
+      - "8000"
     networks:
       - back-tier
     

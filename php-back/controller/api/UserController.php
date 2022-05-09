@@ -31,7 +31,7 @@ class UserController extends BaseController
 
             /* the file content */
             // https://es.stackoverflow.com/questions/294029/para-que-sirve-file-get-contentsphp-input
-            $content = $content . basename($_FILES['userfile']['name']);;
+            $content = $content . basename($_FILES['userfile']['name']);
 
             /* create a stream context telling PHP to overwrite the file */
             $options = array('ftp' => array('overwrite' => true));
