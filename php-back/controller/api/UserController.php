@@ -4,6 +4,9 @@ class UserController extends BaseController
 
     public function upload2Action(){
         header('Content-Type: application/json; charset=utf-8');
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: POST");
+        header("Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization");
         $response = array();
         try {
         
@@ -128,16 +131,16 @@ class UserController extends BaseController
             $ftp_connection = ftp_connect($ftp_server)
             or die("Could not connect to $ftp_server");
             if( $ftp_connection ) {
-                echo "successfully connected to the ftp server!";
+                // echo "successfully connected to the ftp server!";
                 $login = ftp_login($ftp_connection,
                         $ftp_username, $ftp_userpass);
                 if($login) {
-                    echo "<br>login successfull!";
+                    // echo "<br>login successfull!";
                     
                     if (ftp_put($ftp_connection, $file_name,
                     $local_name, FTP_BINARY)) {
-                        echo "<br>Successfully uploaded "
-                        . "from $local_name to $file_name.";
+                        // echo "<br>Successfully uploaded ";
+                        // . "from $local_name to $file_name.";
                     }
                     else {
                         echo "<br>Error while uploading from "
@@ -194,7 +197,7 @@ class UserController extends BaseController
             or die("Could not connect to $ftp_server");
         
             if( $ftp_connection ) {
-                echo "successfully connected to the ftp server!";
+                // echo "successfully connected to the ftp server!";
                 
                 // Logging in to established connection
                 // with ftp username password
@@ -205,7 +208,7 @@ class UserController extends BaseController
                     
                     // Checking whether logged in successfully
                     // or not
-                    echo "<br>logged in successfully!";
+                    // echo "<br>logged in successfully!";
                     
                     // Name or path of the localfile to
                     // where the file to be downloaded
@@ -218,8 +221,8 @@ class UserController extends BaseController
                     // Downloading the specified server file
                     if (ftp_get($ftp_connection, $local_file,
                             $server_file, FTP_BINARY)) {
-                        echo "<br>Successfully downloaded "
-                        . "from $server_file to $local_file.";
+                        // echo "<br>Successfully downloaded "
+                        // . "from $server_file to $local_file.";
                     }
                     else {
                         echo "<br>Error while downloading from "
@@ -235,7 +238,7 @@ class UserController extends BaseController
                 // Closing  connection
             
                 if(ftp_close($ftp_connection)) {
-                    echo "<br>Connection closed Successfully!";
+                    // echo "<br>Connection closed Successfully!";
                 }
                 $fileLocal = fopen($local_file, 'r');
                 if ($fileLocal) {

@@ -28,6 +28,21 @@ services:
       - "8000"
     networks:
       - back-tier
+
+  frontendservice:
+    image: nginx
+    hostname: frontend
+    container_name: frontend
+    ports:
+      - "127.0.0.1:8080:80"
+    expose:
+      - 8080
+    networks:
+      - back-tier
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+
+
     
 networks:
   # The presence of these objects is sufficient to define them
