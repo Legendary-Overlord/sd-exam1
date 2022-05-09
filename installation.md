@@ -62,7 +62,7 @@ For registry an discovery service we use **Consul by HashiCorp**. Here we regist
 ### 1. Deploy Consul-server
 first we need deploy the Consul server. for this is necessary execute the following command:
 ``docker run -d -p 8500:8500 -p 8600/udp  
--p 8400:8400 --name consul-server --network back-tier gliderlabs/consul-server -node myconsul -bootstrap``
+-p 8400:8400 --name consul-server --network sd-exam1_back-tier gliderlabs/consul-server -node myconsul -bootstrap``
 
 ### 2. Deploy Registrator
 to automatically add containers to consul we need deploy the Registrator, for this we will need to obtein IP address from the consul-server.  
@@ -72,7 +72,7 @@ first execute ``docker ps``  and take the id from the container consul-server. s
 
 Lastly we run the Register using the obtain ip address and the following command:
 
-``docker run -d --network back-tier -v /var/run/docker.sock:/tmp/docker.sock  gliderlabs/registrator -ip ip_obtained consul://ip_opbtained:8500``
+``docker run -d --network sd-exam1_back-tier -v /var/run/docker.sock:/tmp/docker.sock  gliderlabs/registrator -ip ip_obtained consul://ip_opbtained:8500``
 
 ### 3. Add services
 To add services to our consul-server we need add the following environment variables when you run each container:
