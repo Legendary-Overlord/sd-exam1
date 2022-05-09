@@ -1,6 +1,6 @@
-FROM php:zts-alpine3.15
-COPY . /app
-WORKDIR /app
+FROM php:3.15-apache
+COPY . /var/www/html
+WORKDIR /var/www/html
 
-EXPOSE 8000
+EXPOSE 80
 CMD php -S localhost:8000 index.php

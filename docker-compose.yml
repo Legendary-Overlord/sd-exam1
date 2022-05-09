@@ -15,15 +15,13 @@ services:
       - "21000-21010:21000-21010"
 
   backendservice:
-    image: pcspam/php-back
+    image: php:8.1-apache
     hostname: php-back
-    build:
-      context: php-back
-      dockerfile: DockerFile
+    container_name: php-back
+    volumes:
+      - ./php-back:/var/www/html
     ports:
-      - "8000:8000"
-    expose:
-      - "8000"
+      - "8000:80"
     networks:
       - back-tier
     
