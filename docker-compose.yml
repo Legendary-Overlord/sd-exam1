@@ -6,14 +6,14 @@ services:
     hostname: ftpserver
     container_name: ftpserver
     ports:
-      - "21:21"
+      - "20-21:20-21"
       - "21000-21010:21000-21010"
     networks:
       - back-tier
     env_file: ./ftpserver/config.env
     expose:
-      - "21"
-      - "21000-21010:21000-21010"
+      - "20-21"
+      - "21000-21010"
 
   backendservice:
     image: php:8.1-apache

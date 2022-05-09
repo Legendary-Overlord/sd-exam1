@@ -23,6 +23,8 @@ class UserController extends BaseController
         // to the ftp username
         $ftp_userpass="1234";
 
+        $uploaddir = "/var/www/upload";
+
         try {
             //as seen in https://www.php.net/manual/en/function.file-put-contents.php
             // $filename->name = isset($_GET['filename']) ? $_GET['filename'] : die();
@@ -31,7 +33,7 @@ class UserController extends BaseController
 
             /* the file content */
             // https://es.stackoverflow.com/questions/294029/para-que-sirve-file-get-contentsphp-input
-            $content = $content . basename($_FILES['userfile']['name']);
+            $content = $uploaddir . basename($_FILES['userfile']['name']);
 
             /* create a stream context telling PHP to overwrite the file */
             $options = array('ftp' => array('overwrite' => true));
@@ -49,7 +51,7 @@ class UserController extends BaseController
      */
     public function downloadAction()
     {
-        $ftp_server = "localhost";
+        $ftp_server = "ftpserver";
 
         $ftp_username="one";
  
@@ -61,7 +63,7 @@ class UserController extends BaseController
         $strErrorDesc = '';
 
         //local_file
-        $local_file->name = isset($_GET['filename']) ? $_GET['filename'] : die();
+        $server_file = isset($_GET['filename']) ? $_GET['filename'] : die();
 
         try {
             // Establish ftp connection
@@ -114,8 +116,8 @@ class UserController extends BaseController
                 }
                 $fileLocal = fopen($local_file, 'r');
                 if ($fileLocal) {
-                    $responseData = fread($f, filesize($filename));
-                    fclose($f);
+                    $responseData = fread($fileLocal, filesize($server_file));
+                    fclose($fileLocal);
                 }
             }
         } catch (Error $e) {
