@@ -28,7 +28,7 @@ services:
       - "8000"
     networks:
       - back-tier
-
+    env_file: ./php-back/config.env
   frontendservice:
     image: nginx
     hostname: frontend
@@ -41,7 +41,6 @@ services:
       - back-tier
     volumes:
       - ./frontend:/usr/share/nginx/html
-
 
     
 networks:
