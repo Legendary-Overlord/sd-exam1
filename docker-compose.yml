@@ -28,7 +28,7 @@ services:
       - "8000"
     networks:
       - back-tier
-    
+    env_file: ./php-back/config.env
 networks:
   # The presence of these objects is sufficient to define them
   back-tier: {}
