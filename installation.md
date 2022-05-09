@@ -11,6 +11,35 @@
 docker volume create sdexam1 
 ```
 
+# Consul
+For registry an discovery service we use **Consul by HashiCorp**. Here we register all of the containers automatically using **Registrator** and a single Consul node that will be consul-server.
+
+### 1. Deploy Consul-server
+first we need deploy the Consul server. for this is necessary execute the following command:
+``docker run -d -p 8500:8500 -p 8600/udp  
+-p 8400:8400 --name consul-server --network back-tier gliderlabs/consul-server -node myconsul -bootstrap``
+
+### 2. Deploy Registrator
+to automatically add containers to consul we need deploy the Registrator, for this we will need to obtein IP address from the consul-server.  
+first execute ``docker ps``  and take the id from the container consul-server. second we execute the following command to obtain the ip address using the container id previously obtained:
+
+``docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' container_name_or_id``
+
+Lastly we run the Register using the obtain ip address and the following command:
+
+``docker run -d --network back-tier -v /var/run/docker.sock:/tmp/docker.sock  gliderlabs/registrator -ip ip_obtained consul://ip_opbtained:8500``
+
+### 3. Add services
+To add services to our consul-server we need add the following environment variables when you run each container:
+
+- SERVICE_80_NAME=your_service_name
+- SERVICE_80_ID=your_service_id
+- SERVICE_80_CHECK_HTTP=true
+- SERVICE_80_CHECK_HTTP=/
+
+example:
+
+``docker run -d -p 20-21:20-21 -p 21000-21010:21000-21010 --network back-tier --name ftpserver --env-file ftpserver/config.env delfer/alpine-ftp-server``
 
 # Download Samba image from docker hub that runs on the persistent volume
 ```
